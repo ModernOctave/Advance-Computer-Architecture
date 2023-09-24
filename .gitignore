@@ -1,0 +1,7 @@
+.vscode
+.idea
+pin*
+*.zip
+*.log
+*.png
+__pycache__
