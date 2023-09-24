@@ -1,0 +1,1041 @@
+<Configuration>
+	<Emulator>
+		<EmulatorType>none</EmulatorType> 
+
+		<CommunicationType>file</CommunicationType>  
+
+		<StoreExecutionTraceInAFile>false</StoreExecutionTraceInAFile>
+
+		<BasenameForTraceFiles>/home/omp/Documents/B_Tech/Semester_7/ACA/Assignments/Assignment_3/traces</BasenameForTraceFiles>
+		
+		<StoreExecutionTraceInADynamicFile>false</StoreExecutionTraceInADynamicFile> 
+		
+		<PinTool>/home/omp/Documents/B_Tech/Semester_7/ACA/Assignments/pin-3.28-98749/</PinTool>
+		<PinInstrumentor>/home/rajshekar/projects/tejas/workspace/Tejas/src/emulator/pin/obj-pin/causalityTool_threadsWithoutCoresIgnored.so</PinInstrumentor>
+		<QemuTool>TODO/home/prathmesh/workspace/qemu/x86_64-linux-user/qemu-x86_64 /home/prathmesh/tmp/testQemu.o</QemuTool>
+		<ShmLibDirectory>/home/rajshekar/projects/eviction/workspace/Tejas/src/emulator/pin/obj-comm</ShmLibDirectory>
+		<GetBenchmarkPIDScript>/home/rajshekar/projects/tejas/workspace/Tejas/src/simulator/main/getBenchmarkPID.sh</GetBenchmarkPIDScript>
+		<KillEmulatorScript>/home/rajshekar/projects/tejas/workspace/Tejas/src/simulator/main/killAllDescendents.sh</KillEmulatorScript>
+	</Emulator>
+	
+	
+	<Simulation>
+		<CollectInsnWorkingSet>false</CollectInsnWorkingSet> 
+		<InsnWorkingSetChunkSize>3000000</InsnWorkingSetChunkSize> 
+		
+		<CollectDataWorkingSet>false</CollectDataWorkingSet>
+		<DataWorkingSetChunkSize>3000000</DataWorkingSetChunkSize> 
+		
+		<NumTempIntReg>16</NumTempIntReg>			
+		<IndexAddrModeEnable>0</IndexAddrModeEnable>		
+		<EmuCores>0</EmuCores>					
+		<JavaCores>1</JavaCores>				
+		<DebugMode>false</DebugMode>				
+		<DetachMemSysData>false</DetachMemSysData>
+		<DetachMemSysInsn>false</DetachMemSysInsn>
+		<PrintPowerStats>true</PrintPowerStats>
+		<Broadcast>false</Broadcast>
+		<pinpointsSim>false</pinpointsSim>
+		<pinpointsFile>/mnt/srishtistr0/scratch/rajshekar/tejas/PinPoints_working_directory/soplex.test.Data/t.sorted</pinpointsFile>
+		<NumInsToIgnore>00000000</NumInsToIgnore>	
+		<subsetSim>true</subsetSim>
+		<subsetSimSize>10000000</subsetSimSize>
+		<markerFunctions>false</markerFunctions>
+		<startSimMarker>add</startSimMarker>
+		<endSimMarker>sub</endSimMarker>
+		<NumCores>2</NumCores>
+	</Simulation>
+
+	
+	<System>
+		<MainMemory>
+			<MemControllerToUse>SIMPLE</MemControllerToUse>       
+			<MainMemoryLatency>132</MainMemoryLatency>		
+			<MainMemoryFrequency>2400</MainMemoryFrequency>		
+			<MainMemoryPortType>FCFS</MainMemoryPortType>		
+			<MainMemoryAccessPorts>1</MainMemoryAccessPorts>	
+			<MainMemoryPortOccupancy>1</MainMemoryPortOccupancy>	
+			<LeakageEnergy>0.0073</LeakageEnergy>
+			<DynamicEnergy>0.0544</DynamicEnergy>
+		</MainMemory>
+		
+		<CacheBusLatency>1</CacheBusLatency>			
+		
+		<GlobalClock>
+			<LeakageEnergy>0.3456</LeakageEnergy>
+			<DynamicEnergy>0.2886</DynamicEnergy>
+		</GlobalClock>
+			
+		
+		<Core>
+			<CoreNumber>0-1</CoreNumber>
+			<CoreFrequency>2500</CoreFrequency>		
+			<PipelineType>outOfOrder</PipelineType>	
+			
+			<BranchPredictor>
+				<Predictor_Mode>TAGE-SC-L</Predictor_Mode>
+				<PCBits>8</PCBits>
+				<BHRsize>16</BHRsize>
+				<BranchMispredPenalty>17</BranchMispredPenalty>
+				<SaturatingBits>2</SaturatingBits>
+				<TAGESCLLibDirectory>/home/omp/Documents/B_Tech/Semester_7/ACA/Assignments/Assignment_3/tejas/src/simulator/pipeline/branchpredictor/TAGESCL</TAGESCLLibDirectory>
+				<LeakageEnergy>0.0178</LeakageEnergy>
+				<DynamicEnergy>0.0962</DynamicEnergy>
+			</BranchPredictor>
+			
+			<LSQ>
+				<NumLoadEntries>128</NumLoadEntries>
+				<NumStoreEntries>72</NumStoreEntries>				
+				<LSQLatency>0</LSQLatency>
+				<LSQPortType>UL</LSQPortType>
+				<LSQAccessPorts>-1</LSQAccessPorts>		
+				<LSQPortOccupancy>-1</LSQPortOccupancy>		
+				<LeakageEnergy>0.0318</LeakageEnergy>
+				<DynamicEnergy>0.1725</DynamicEnergy>
+			</LSQ>
+
+			<ITLB>
+				<Size>144</Size>				
+				<Latency>1</Latency>			
+				<MissPenalty>-1</MissPenalty>			
+				<PortType>UL</PortType>			
+				<AccessPorts>-1</AccessPorts>		
+				<PortOccupancy>-1</PortOccupancy>		
+				<LeakageEnergy>0.00546275</LeakageEnergy>
+				<DynamicEnergy>0.06792852941</DynamicEnergy>
+			</ITLB>
+			
+			<DTLB>
+				<Size>96</Size>				
+				<Latency>1</Latency>			
+				<MissPenalty>-1</MissPenalty>			
+				<PortType>UL</PortType>			
+				<AccessPorts>-1</AccessPorts>		
+				<PortOccupancy>-1</PortOccupancy>		
+				<LeakageEnergy>0.00546275</LeakageEnergy>
+				<DynamicEnergy>0.06792852941</DynamicEnergy>
+			</DTLB>
+			
+			<STLB>							
+				<Size>2048</Size>				
+				<Latency>9</Latency>			
+				<MissPenalty>17</MissPenalty>			
+				<PortType>UL</PortType>			
+				<AccessPorts>-1</AccessPorts>		
+				<PortOccupancy>-1</PortOccupancy>		
+				<LeakageEnergy>0.00546275</LeakageEnergy>	
+				<DynamicEnergy>0.06792852941</DynamicEnergy>	
+			</STLB>
+
+			<MicroOpCache>
+                                <NumberOfMicroOps>2304</NumberOfMicroOps>
+                        </MicroOpCache>
+			
+			<Decode>								
+				<Width>6</Width>			
+				<LeakageEnergy>0.0598</LeakageEnergy>
+				<DynamicEnergy>0.0347</DynamicEnergy>
+			</Decode>
+			
+			<Rename>
+				<Width>6</Width>
+				<RAT>
+					<Integer>
+						<LeakageEnergy>0.0045</LeakageEnergy>
+						<DynamicEnergy>0.0150</DynamicEnergy>
+					</Integer>
+					<Float>
+						<LeakageEnergy>0.0017</LeakageEnergy>
+						<DynamicEnergy>0.0130</DynamicEnergy>
+					</Float>
+				</RAT>
+				<FreeList>
+					<Integer>
+						<LeakageEnergy>0.0016</LeakageEnergy>
+						<DynamicEnergy>0.0085</DynamicEnergy>
+					</Integer>
+					<Float>
+						<LeakageEnergy>0.0030</LeakageEnergy>
+						<DynamicEnergy>0.0045</DynamicEnergy>
+					</Float>
+				</FreeList>
+			</Rename>
+			
+			<InstructionWindow>
+				<IssueWidth>10</IssueWidth>			
+				<IWSize>160</IWSize>				
+				<LeakageEnergy>0.0046</LeakageEnergy>
+				<DynamicEnergy>0.0142</DynamicEnergy>
+			</InstructionWindow>
+			
+			<ROB>
+				<RetireWidth>6</RetireWidth>			
+				<ROBSize>351</ROBSize>				
+				<LeakageEnergy>0.0058</LeakageEnergy>
+				<DynamicEnergy>0.0304</DynamicEnergy>
+			</ROB>
+
+			<RegisterFile>
+				<Integer>
+					<IntRegFileSize>280</IntRegFileSize>		
+					<IntArchRegNum>64</IntArchRegNum>		
+					<LeakageEnergy>0.0108</LeakageEnergy>
+					<DynamicEnergy>0.0572</DynamicEnergy>
+				</Integer>
+				
+				<Vector>
+					<VectorRegFileSize>224</VectorRegFileSize>		
+					<VectorArchRegNum>64</VectorArchRegNum>		
+					<LeakageEnergy>0.0075</LeakageEnergy>
+					<DynamicEnergy>0.0207</DynamicEnergy>
+				</Vector>
+				
+			</RegisterFile>
+			
+			<ExecutionCoreNumPorts>10</ExecutionCoreNumPorts>
+			
+			<IntALU>
+				<Num>4</Num>				
+				<Latency>1</Latency>		
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				
+				<PortNumber>0</PortNumber>
+				<PortNumber>1</PortNumber>
+				<PortNumber>5</PortNumber>
+				<PortNumber>6</PortNumber>
+				<LeakageEnergy>0.0542</LeakageEnergy>
+				<DynamicEnergy>0.3257</DynamicEnergy>			
+			</IntALU>
+			
+			<IntMul>
+				<Num>1</Num>
+				<Latency>4</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>1</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</IntMul>
+			
+			<IntDiv>
+				<Num>1</Num>
+				<Latency>50</Latency>
+				<ReciprocalOfThroughput>50</ReciprocalOfThroughput>
+				<PortNumber>1</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</IntDiv>
+			
+			<FloatALU>
+				<Num>0</Num>
+				<Latency>3</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>1</PortNumber>
+				<LeakageEnergy>0.0654</LeakageEnergy>
+				<DynamicEnergy>0.5366</DynamicEnergy>			
+			</FloatALU>
+			
+			<FloatMul>
+				<Num>0</Num>
+				<Latency>5</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>0</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</FloatMul>
+			
+			<FloatDiv>
+				<Num>1</Num>
+				<Latency>14</Latency>
+				<ReciprocalOfThroughput>4</ReciprocalOfThroughput>
+				<PortNumber>0</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</FloatDiv>
+			
+			<IntVectorALU>
+				<Num>3</Num>
+				<Latency>1</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>0</PortNumber>
+				<PortNumber>1</PortNumber>
+				<PortNumber>5</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</IntVectorALU>
+			
+			<IntVectorMul>
+				<Num>3</Num>
+				<Latency>5</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>0</PortNumber>
+				<PortNumber>1</PortNumber>
+				<PortNumber>5</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</IntVectorMul>
+			
+			<FloatVectorALU>
+				<Num>0</Num>
+				<Latency>1</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>0</PortNumber>
+				<PortNumber>1</PortNumber>
+				<PortNumber>5</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</FloatVectorALU>
+			
+			<FloatVectorMul>
+				<Num>0</Num>
+				<Latency>5</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>0</PortNumber>
+				<PortNumber>1</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</FloatVectorMul>
+			
+			<FMA>
+				<Num>3</Num>
+				<Latency>4</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>0</PortNumber>
+				<PortNumber>1</PortNumber>
+				<PortNumber>5</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</FMA>
+			
+			<AES>
+				<Num>1</Num>
+				<Latency>4</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>0</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</AES>
+			
+			<VectorString>
+				<Num>1</Num>
+				<Latency>9</Latency>
+				<ReciprocalOfThroughput>5</ReciprocalOfThroughput>
+				<PortNumber>0</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</VectorString>
+			
+			<BitScan>
+				<Num>1</Num>
+				<Latency>3</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>1</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</BitScan>
+			
+			<VectorShuffle>
+				<Num>2</Num>
+				<Latency>1</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>1</PortNumber>
+				<PortNumber>5</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</VectorShuffle>
+			
+			<LEA>
+				<Num>4</Num>
+				<Latency>3</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>0</PortNumber>
+				<PortNumber>1</PortNumber>
+				<PortNumber>5</PortNumber>
+				<PortNumber>6</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</LEA>
+			
+			<Branch>
+				<Num>2</Num>
+				<Latency>1</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>0</PortNumber>
+				<PortNumber>6</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</Branch>
+			
+			<LoadAGU>
+				<Num>2</Num>
+				<Latency>1</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>2</PortNumber>
+				<PortNumber>3</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</LoadAGU>
+			
+			<Load>
+				<Num>2</Num>
+				<Latency>1</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>2</PortNumber>
+				<PortNumber>3</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</Load>
+			
+			<StoreAGU>
+				<Num>2</Num>
+				<Latency>1</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>7</PortNumber>
+				<PortNumber>8</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</StoreAGU>
+			
+			<Store>
+				<Num>2</Num>
+				<Latency>1</Latency>
+				<ReciprocalOfThroughput>1</ReciprocalOfThroughput>
+				<PortNumber>4</PortNumber>
+				<PortNumber>9</PortNumber>
+				<LeakageEnergy>0.0271</LeakageEnergy>
+				<DynamicEnergy>0.6514</DynamicEnergy>			
+			</Store>
+			
+			<ResultsBroadcastBus>
+				<LeakageEnergy>0.0239</LeakageEnergy>
+				<DynamicEnergy>0.5948</DynamicEnergy>
+			</ResultsBroadcastBus>
+			
+			<TreeBarrier>false</TreeBarrier>			
+			<BarrierLatency>2</BarrierLatency>
+			<BarrierUnit>Distributed</BarrierUnit>			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+						
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<Cache firstLevel="true" name="I1" nextLevel="L2" type="ICache_32K_8" />
+			<Cache firstLevel="true" name="L1" nextLevel="L2" type="L1Cache_48K_12" />
+			<Cache name="L2" nextLevel="L3" type="L2Cache_1280K_20" />
+			
+			<Criticality>
+				<ToCompute>false</ToCompute>
+				<GraphModel>Fields</GraphModel>
+				<WindowSize>448</WindowSize>
+				<ApportioningStrategy>None</ApportioningStrategy>
+				<CounterModel>Fields</CounterModel>
+				<CounterWidth>6</CounterWidth>
+				<NumEntriesPredictorTable>16384</NumEntriesPredictorTable>
+				<CounterThreshold>8</CounterThreshold>
+				<CriticalityDump>false</CriticalityDump>
+				<GraphSnapshot>false</GraphSnapshot>
+				<L1OracleExperiment>false</L1OracleExperiment>
+				<CriticalityBitVector>false</CriticalityBitVector>
+			</Criticality>
+			
+			<CodeTranslation>
+				<ReadingFromLeanTrace>false</ReadingFromLeanTrace>
+				<DropPredictableBranches>false</DropPredictableBranches>
+				<DropPredictablePredicates>false</DropPredictablePredicates>
+				<DropLoadsInLogicCone>false</DropLoadsInLogicCone>
+				<DropDataInconsequentialInstructions>false</DropDataInconsequentialInstructions>
+				<IPipeRSSize>128</IPipeRSSize>
+				<IPipeWidth>6</IPipeWidth>
+				<PerfectIPipe>false</PerfectIPipe>
+			</CodeTranslation>
+		</Core>
+		
+		<SharedCaches>
+			<Cache name="L3" type="L3Cache_3M_12" />
+			<Cache name="D1" type="Directory1" />
+		</SharedCaches>
+		
+		<Interconnect>NOC</Interconnect>
+		
+		<NOC>
+			<NocConfigFile>/home/omp/Documents/B_Tech/Semester_7/ACA/Assignments/Assignment_3/NocConfig.txt</NocConfigFile>
+			<NocSelScheme>STATIC</NocSelScheme>
+			<NocNumberOfBuffers>4</NocNumberOfBuffers>
+			<NocPortType>FCFS</NocPortType>
+			<NocAccessPorts>4</NocAccessPorts>
+			<NocPortOccupancy>1</NocPortOccupancy>
+			<NocLatency>1</NocLatency>
+			<NocOperatingFreq>2400</NocOperatingFreq>
+			<NocTopology>TORUS</NocTopology>     
+			<NocRoutingAlgorithm>SIMPLE</NocRoutingAlgorithm>
+			<NocLatencyBetweenNOCElements>2</NocLatencyBetweenNOCElements>
+			<NocRouterArbiter>RR_ARBITER</NocRouterArbiter>
+			<TechPoint>90</TechPoint>
+			<NocConnection>ELECTRICAL</NocConnection>
+			
+			
+			<LeakageEnergy>0.1877</LeakageEnergy>
+			<DynamicEnergy>2.1164</DynamicEnergy>
+		</NOC>
+		
+	<BUS>
+		<Latency>30</Latency>
+		<LeakageEnergy>0.1877</LeakageEnergy>
+		<DynamicEnergy>2.1164</DynamicEnergy>
+	</BUS>
+	<MainMemoryController>               
+			<rowBufferPolicy>OpenPage</rowBufferPolicy>		
+			<schedulingPolicy>RankThenBankRoundRobin</schedulingPolicy>	
+			<queuingStructure>PerRank</queuingStructure>	
+			<numRankPorts>1</numRankPorts>
+			<rankPortType>FCFS</rankPortType>	
+			<rankOccupancy>1</rankOccupancy>
+			<rankLatency>100</rankLatency>
+			<rankOperatingFrequency>3600</rankOperatingFrequency>
+			<numChans>2</numChans>      
+			<numRanks>2</numRanks>      
+			<numBanks>8</numBanks>      
+			<numRows>16384</numRows>      
+			<numCols>2048</numCols>      
+			<TRANSQUEUE_DEPTH>32</TRANSQUEUE_DEPTH>      
+			<TOTAL_ROW_ACCESSES>4</TOTAL_ROW_ACCESSES>      
+
+			
+			
+			
+
+			<tCCD>4</tCCD>      
+			<tBL>8</tBL>      
+			<tCL>11</tCL>      
+			<tAL>0</tAL>      
+			<tRP>11</tRP>      
+			<tCMD>1</tCMD>      
+			<tRC>39</tRC>      
+			<tRCD>11</tRCD>      
+			<tRAS>28</tRAS>      
+			<tRFC>88</tRFC>      
+			<tRTRS>1</tRTRS>      
+			<tRRD>5</tRRD>      
+			<tFAW>24</tFAW>      
+			<tRTP>6</tRTP>      
+			<tWTR>6</tWTR>      
+			<tWR>12</tWR>      
+			<tCK>1.25</tCK>      
+			<RefreshPeriod>7800</RefreshPeriod>      
+			<DATA_BUS_BITS>64</DATA_BUS_BITS>      
+	</MainMemoryController>
+
+</System>
+
+
+<Library>
+	<UnifiedCache_32K_8>
+		<AMAT>-1</AMAT>
+		<Frequency>4000</Frequency>			
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>8</Associativity>
+		<Size>32768</Size>					
+		<ReadLatency>3</ReadLatency>				
+		<WriteLatency>3</WriteLatency>				
+		<PortType>UL</PortType>				
+		<ReadPorts>0</ReadPorts>
+		<WritePorts>0</WritePorts>
+		<ReadWritePorts>1</ReadWritePorts>
+		<PortReadOccupancy>1</PortReadOccupancy>
+		<PortWriteOccupancy>1</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>None</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>16</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            
+		<LeakageEnergy>0.1092</LeakageEnergy>
+		<ReadDynamicEnergy>0.33964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.33964264705</WriteDynamicEnergy>
+		<CacheType>Unified</CacheType>  
+	</UnifiedCache_32K_8>
+		
+	<ICache_32K_8>
+		<AMAT>-1</AMAT>
+		<Frequency>2500</Frequency>			
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>8</Associativity>
+		<Size>32768</Size>					
+		<ReadLatency>4</ReadLatency>				
+		<WriteLatency>4</WriteLatency>				
+		<PortType>FCFS</PortType>				
+		<ReadPorts>0</ReadPorts>
+		<WritePorts>0</WritePorts>
+		<ReadWritePorts>4</ReadWritePorts>
+		<PortReadOccupancy>1</PortReadOccupancy>
+		<PortWriteOccupancy>1</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>Power4</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>16</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            
+		<LeakageEnergy>0.1092</LeakageEnergy>
+		<ReadDynamicEnergy>0.33964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.33964264705</WriteDynamicEnergy>
+		<CacheType>Instruction</CacheType>  
+	</ICache_32K_8>
+		
+	<L1Cache_32K_8>
+		<AMAT>-1</AMAT>
+		<Frequency>2500</Frequency>			
+		<WriteMode>WT</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>8</Associativity>
+		<Size>32768</Size>					
+		<ReadLatency>4</ReadLatency>				
+		<WriteLatency>4</WriteLatency>				
+		<PortType>FCFS</PortType>				
+		<ReadPorts>1</ReadPorts>
+		<WritePorts>1</WritePorts>
+		<ReadWritePorts>0</ReadWritePorts>
+		<PortReadOccupancy>1</PortReadOccupancy>
+		<PortWriteOccupancy>2</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>Power4</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>16</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            			
+		<LeakageEnergy>0.1092</LeakageEnergy>
+		<ReadDynamicEnergy>0.33964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.33964264705</WriteDynamicEnergy>
+		<CacheType>Data</CacheType>  
+	</L1Cache_32K_8>
+		
+	<L1Cache_48K_12>
+		<AMAT>-1</AMAT>
+		<Frequency>2500</Frequency>			
+		<WriteMode>WT</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>12</Associativity>
+		<Size>49152</Size>					
+		<ReadLatency>5</ReadLatency>				
+		<WriteLatency>5</WriteLatency>				
+		<PortType>FCFS</PortType>				
+		<ReadPorts>1</ReadPorts>
+		<WritePorts>1</WritePorts>
+		<ReadWritePorts>0</ReadWritePorts>
+		<PortReadOccupancy>1</PortReadOccupancy>
+		<PortWriteOccupancy>2</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>Power4</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>16</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            			
+		<LeakageEnergy>0.1092</LeakageEnergy>
+		<ReadDynamicEnergy>0.33964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.33964264705</WriteDynamicEnergy>
+		<CacheType>Data</CacheType>  
+	</L1Cache_48K_12>
+		
+	<L2Cache_256K_8>
+		<AMAT>-1</AMAT>
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>8</Associativity>
+		<Size>262144</Size>					
+		<ReadLatency>12</ReadLatency>				
+		<WriteLatency>12</WriteLatency>				
+		<PortType>FCFS</PortType>				
+		<ReadPorts>0</ReadPorts>
+		<WritePorts>0</WritePorts>
+		<ReadWritePorts>1</ReadWritePorts>
+		<PortReadOccupancy>1</PortReadOccupancy>
+		<PortWriteOccupancy>1</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>None</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>256</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            			
+		<LeakageEnergy>0.1592</LeakageEnergy>
+		<ReadDynamicEnergy>0.43964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.43964264705</WriteDynamicEnergy>
+		<CacheType>Unified</CacheType>  
+	</L2Cache_256K_8>
+		
+	<L2Cache_256K_4>
+		<AMAT>-1</AMAT>
+		<Frequency>2500</Frequency>			
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>4</Associativity>
+		<Size>262144</Size>					
+		<ReadLatency>12</ReadLatency>				
+		<WriteLatency>12</WriteLatency>				
+		<PortType>FCFS</PortType>				
+		<ReadPorts>1</ReadPorts>
+		<WritePorts>1</WritePorts>
+		<ReadWritePorts>0</ReadWritePorts>
+		<PortReadOccupancy>1</PortReadOccupancy>
+		<PortWriteOccupancy>1</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>Power4</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>256</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            			
+		<LeakageEnergy>0.1592</LeakageEnergy>
+		<ReadDynamicEnergy>0.43964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.43964264705</WriteDynamicEnergy>
+		<CacheType>Unified</CacheType>  
+	</L2Cache_256K_4>
+		
+	<L2Cache_512K_8>
+		<AMAT>-1</AMAT>
+		<Frequency>2500</Frequency>			
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>8</Associativity>
+		<Size>524288</Size>					
+		<ReadLatency>13</ReadLatency>				
+		<WriteLatency>13</WriteLatency>				
+		<PortType>FCFS</PortType>				
+		<ReadPorts>0</ReadPorts>
+		<WritePorts>0</WritePorts>
+		<ReadWritePorts>1</ReadWritePorts>
+		<PortReadOccupancy>1</PortReadOccupancy>
+		<PortWriteOccupancy>1</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>Power4</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>256</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            			
+		<LeakageEnergy>0.1592</LeakageEnergy>
+		<ReadDynamicEnergy>0.43964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.43964264705</WriteDynamicEnergy>
+		<CacheType>Unified</CacheType>  
+	</L2Cache_512K_8>
+		
+	<L2Cache_1280K_20>
+		<AMAT>-1</AMAT>
+		<Frequency>2500</Frequency>			
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>20</Associativity>
+		<Size>1310720</Size>					
+		<ReadLatency>14</ReadLatency>				
+		<WriteLatency>14</WriteLatency>				
+		<PortType>FCFS</PortType>				
+		<ReadPorts>0</ReadPorts>
+		<WritePorts>0</WritePorts>
+		<ReadWritePorts>1</ReadWritePorts>
+		<PortReadOccupancy>1</PortReadOccupancy>
+		<PortWriteOccupancy>1</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>Power4</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>256</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            			
+		<LeakageEnergy>0.1592</LeakageEnergy>
+		<ReadDynamicEnergy>0.43964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.43964264705</WriteDynamicEnergy>
+		<CacheType>Unified</CacheType>  
+	</L2Cache_1280K_20>
+		
+	<L2Cache_1M_16>
+		<AMAT>-1</AMAT>
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>16</Associativity>
+		<Size>1048576</Size>					
+		<Latency>12</Latency>				
+		<PortType>FCFS</PortType>				
+		<ReadPorts>1</ReadPorts>
+		<WritePorts>1</WritePorts>
+		<ReadWritePorts>0</ReadWritePorts>
+		<PortReadOccupancy>1</PortReadOccupancy>
+		<PortWriteOccupancy>1</PortWriteOccupancy>
+		<Coherence>D1</Coherence>			
+		<Prefetcher>Power4</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>256</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            			
+		<LeakageEnergy>0.1592</LeakageEnergy>
+		<ReadDynamicEnergy>0.43964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.43964264705</WriteDynamicEnergy>
+		<CacheType>Unified</CacheType>  
+	</L2Cache_1M_16>
+		
+	<L3Cache_1M_8>
+		<AMAT>-1</AMAT>
+		<Frequency>2000</Frequency>
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>8</Associativity>
+		<Size>1048576</Size>					
+		<ReadLatency>60</ReadLatency>				
+		<WriteLatency>60</WriteLatency>				
+		<PortType>UL</PortType>				
+		<ReadPorts>0</ReadPorts>
+		<WritePorts>0</WritePorts>
+		<ReadWritePorts>1</ReadWritePorts>
+		<PortReadOccupancy>1</PortReadOccupancy>
+		<PortWriteOccupancy>1</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>None</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>8</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            
+		<LeakageEnergy>0.1892</LeakageEnergy>
+		<ReadDynamicEnergy>0.60964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.60964264705</WriteDynamicEnergy>
+		<CacheType>Unified</CacheType>  
+	</L3Cache_1M_8>
+		
+	<L3Cache_8M_16>
+		<AMAT>-1</AMAT>
+		<Frequency>4000</Frequency>
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>16</Associativity>
+		<Size>8388608</Size>					
+		<ReadLatency>77</ReadLatency>				
+		<WriteLatency>77</WriteLatency>				
+		<PortType>UL</PortType>				
+		<ReadPorts>1</ReadPorts>
+		<WritePorts>1</WritePorts>
+		<ReadWritePorts>1</ReadWritePorts>
+		<PortReadOccupancy>2</PortReadOccupancy>
+		<PortWriteOccupancy>2</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>Power4</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>8</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            
+		<LeakageEnergy>0.1892</LeakageEnergy>
+		<ReadDynamicEnergy>0.60964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.60964264705</WriteDynamicEnergy>
+		<CacheType>Unified</CacheType>  
+	</L3Cache_8M_16>
+		
+	<L3Cache_4M_8>
+		<AMAT>-1</AMAT>
+		<Frequency>2500</Frequency>
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>8</Associativity>
+		<Size>4194304</Size>					
+		<ReadLatency>44</ReadLatency>				
+		<WriteLatency>44</WriteLatency>				
+		<PortType>UL</PortType>				
+		<ReadPorts>1</ReadPorts>
+		<WritePorts>1</WritePorts>
+		<ReadWritePorts>1</ReadWritePorts>
+		<PortReadOccupancy>2</PortReadOccupancy>
+		<PortWriteOccupancy>2</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>Power4</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>8</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            
+		<LeakageEnergy>0.1892</LeakageEnergy>
+		<ReadDynamicEnergy>0.60964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.60964264705</WriteDynamicEnergy>
+		<CacheType>Unified</CacheType>  
+	</L3Cache_4M_8>
+		
+	<L3Cache_3M_12>
+		<AMAT>-1</AMAT>
+		<Frequency>2500</Frequency>
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>12</Associativity>
+		<Size>3145728</Size>					
+		<ReadLatency>45</ReadLatency>				
+		<WriteLatency>45</WriteLatency>				
+		<PortType>UL</PortType>				
+		<ReadPorts>1</ReadPorts>
+		<WritePorts>1</WritePorts>
+		<ReadWritePorts>1</ReadWritePorts>
+		<PortReadOccupancy>2</PortReadOccupancy>
+		<PortWriteOccupancy>2</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>Power4</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>8</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            
+		<LeakageEnergy>0.1892</LeakageEnergy>
+		<ReadDynamicEnergy>0.60964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.60964264705</WriteDynamicEnergy>
+		<CacheType>Unified</CacheType>  
+	</L3Cache_3M_12>
+		
+	<L3Cache_12M_16>
+		<AMAT>-1</AMAT>
+		<Frequency>2000</Frequency>
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>16</Associativity>
+		<Size>12582912</Size>					
+		<ReadLatency>60</ReadLatency>				
+		<WriteLatency>60</WriteLatency>				
+		<PortType>UL</PortType>				
+		<ReadPorts>0</ReadPorts>
+		<WritePorts>0</WritePorts>
+		<ReadWritePorts>1</ReadWritePorts>
+		<PortReadOccupancy>1</PortReadOccupancy>
+		<PortWriteOccupancy>1</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>None</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>8</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            
+		<LeakageEnergy>0.1892</LeakageEnergy>
+		<ReadDynamicEnergy>0.60964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.60964264705</WriteDynamicEnergy>
+		<CacheType>Unified</CacheType>  
+	</L3Cache_12M_16>
+		
+	<L3Cache_22M_16>
+		<AMAT>-1</AMAT>
+		<Frequency>2000</Frequency>
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>16</Associativity>
+		<Size>23068672</Size>					
+		<ReadLatency>44</ReadLatency>				
+		<WriteLatency>44</WriteLatency>				
+		<PortType>UL</PortType>				
+		<ReadPorts>0</ReadPorts>
+		<WritePorts>0</WritePorts>
+		<ReadWritePorts>1</ReadWritePorts>
+		<PortReadOccupancy>1</PortReadOccupancy>
+		<PortWriteOccupancy>1</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>None</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>8</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            
+		<LeakageEnergy>0.1892</LeakageEnergy>
+		<ReadDynamicEnergy>0.60964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.60964264705</WriteDynamicEnergy>
+		<CacheType>Unified</CacheType>  
+	</L3Cache_22M_16>
+		
+	<L3Cache_16M_16>
+		<AMAT>-1</AMAT>
+		<Frequency>2000</Frequency>
+		<WriteMode>WB</WriteMode>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>16</Associativity>
+		<Size>16777216</Size>					
+		<ReadLatency>44</ReadLatency>				
+		<WriteLatency>44</WriteLatency>				
+		<PortType>UL</PortType>				
+		<ReadPorts>0</ReadPorts>
+		<WritePorts>0</WritePorts>
+		<ReadWritePorts>1</ReadWritePorts>
+		<PortReadOccupancy>5</PortReadOccupancy>
+		<PortWriteOccupancy>5</PortWriteOccupancy>
+		<Coherence>None</Coherence>			
+		<Prefetcher>None</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>8</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            
+		<LeakageEnergy>0.1892</LeakageEnergy>
+		<ReadDynamicEnergy>0.60964264705</ReadDynamicEnergy>
+		<WriteDynamicEnergy>0.60964264705</WriteDynamicEnergy>
+		<CacheType>Unified</CacheType>  
+	</L3Cache_16M_16>
+		
+	<Directory1>
+		<AMAT>-1</AMAT>
+		<Frequency>2400</Frequency>
+		<WriteMode>WB</WriteMode>			
+		<LastLevel>N</LastLevel>			
+		<BlockSize>64</BlockSize>			
+		<Associativity>64</Associativity>
+		<NumEntries>65536</NumEntries>
+		<ReadLatency>5</ReadLatency>				
+		<WriteLatency>5</WriteLatency>				
+		<PortType>FCFS</PortType>				
+		<ReadPorts>0</ReadPorts>
+		<WritePorts>0</WritePorts>
+		<ReadWritePorts>2</ReadWritePorts>
+		<PortReadOccupancy>1</PortReadOccupancy>
+		<PortWriteOccupancy>1</PortWriteOccupancy>
+		<Coherence>N</Coherence>			
+		<Prefetcher>None</Prefetcher>
+		<NumBuses>1</NumBuses>			
+		<MSHRSize>16</MSHRSize>
+		<BusOccupancy>0</BusOccupancy>
+		<Nuca>NONE</Nuca>						
+		<ONuca>NONE</ONuca>						
+		<NucaMapping>S</NucaMapping>            
+		<CacheType>Unified</CacheType>
+		<LeakageEnergy>.1092</LeakageEnergy>
+		<ReadDynamicEnergy>.3396</ReadDynamicEnergy>
+		<WriteDynamicEnergy>.3396</WriteDynamicEnergy>
+		<IsDirectory>true</IsDirectory>
+		<CacheType>Unified</CacheType>  
+	</Directory1>
+		
+	</Library>
+	
+</Configuration>

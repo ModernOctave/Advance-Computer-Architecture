@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="Tejas">
+	<!-- change these as required -->
+	    <property name="jar-dir" value="jars"/>    <!-- directory where the jars are generated -->
+	    <property name="jar-name" value="tejas"/>  <!-- name of the jar -->
+	    <property name="main-class" value="main.Main"/> <!-- path to the main class -->
+<!--	    <property name="PIN-and-file" value="true"/> --> <!-- comment line for file-interface-only; uncomment otherwise -->
+	<!-- ________________________ -->
+
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="Tejas.classpath">
+        <pathelement location="bin"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+                <exclude name="simulator/"/>
+                <exclude name="emulator/pin/"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src/simulator">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src/emulator/pin">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean" depends="clean-pin">
+        <delete dir="bin"/>
+        <delete dir="jars"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project,build-pin" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <exclude name="simulator/"/>
+            <exclude name="emulator/pin/"/>
+            <classpath refid="Tejas.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src/simulator"/>
+            <classpath refid="Tejas.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src/emulator/pin"/>
+            <classpath refid="Tejas.classpath"/>
+        </javac>
+    </target>
+    <target name="clean-pin">
+        <exec dir="src/emulator/pin" executable="make">
+            <arg value="clean"/>
+        </exec>
+    </target>
+    <target name="build-pin" if="PIN-and-file">
+	<exec dir="src/emulator/pin" executable="make">    
+	    </exec>
+    </target>
+    <target name="make-jar" depends="build">
+        <mkdir dir="${jar-dir}"/>
+        <jar destfile="${jar-dir}/${jar-name}.jar" basedir="bin">
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}"/>
+            </manifest>
+        </jar>
+    </target>
+</project>

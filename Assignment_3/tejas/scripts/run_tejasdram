@@ -1,0 +1,78 @@
+#!/bin/bash
+
+echo "Script for running Tejas dram benchmarks!"
+
+#read arguments
+
+if [ "$1" == "" ]; then
+    echo "Usage: run_tejasdram -r rank -b bank -policy Open/Close -bench benchmark"
+    exit 1
+fi
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -c | --chan )           shift
+                                chan=$1
+                                ;;
+        -r | --rank )           shift
+                                rank=$1
+                                ;;
+        -b | --bank )           shift
+                                bank=$1
+                                ;;
+        -policy )               shift
+                                rowbuff=$1
+                                ;;
+        -bench )                shift
+                                bench=$1
+                                ;;
+        * )                     echo "Usage: script -r rank -b bank -policy Open/Close -bench benchmark"
+                                exit 1
+    esac
+    shift
+done
+
+
+#rank=1
+#bank=8
+#rowbuff="Open"
+#bench="429.mcf"
+bench_name=`echo $bench | sed 's/.*\.//g' `
+echo "Running bench : "$bench"_50M/$bench_name"
+
+sed -i "s/<rowBufferPolicy>.*Page<\/rowBufferPolicy>/<rowBufferPolicy>"$rowbuff"Page<\/rowBufferPolicy>/g" ../src/simulator/config/config.xml
+sed -i "s/<numChans>[0-9]*<\/numChans>/<numChans>"$chan"<\/numChans>/g" ../src/simulator/config/config.xml
+sed -i "s/<numRanks>[0-9]*<\/numRanks>/<numRanks>"$rank"<\/numRanks>/g" ../src/simulator/config/config.xml
+sed -i "s/<numBanks>[0-9]*<\/numBanks>/<numBanks>"$bank"<\/numBanks>/g" ../src/simulator/config/config.xml
+
+#sed -i "s/\/mnt\/srishtistr0\/home\/harveen\/benchmarks\/dram_traces\/k6_.*.trc/\/mnt\/srishtistr0\/home\/harveen\/benchmarks\/dram_traces\/k6_"$bench"_"$rank"R_"$bank"B_"$rowbuff".trc/g" /mnt/srishtistr0/home/harveen/Tejas-RAM-try/Tejas-dram/../src/simulator/main/Main.java
+
+#sed -i "s/\/mnt\/srishtistr0\/home\/harveen\/benchmarks\/timing\/.*.timing/\/mnt\/srishtistr0\/home\/harveen\/benchmarks\/timing\/"$bench"_"$rank"R_"$bank"B_"$rowbuff".timing/g" /mnt/srishtistr0/home/harveen/Tejas-RAM-try/Tejas-dram/../src/simulator/main/Main.java
+
+#echo "Compiling!!"
+
+#ant make-jar
+
+echo -n "Running Tejas dram"
+
+java -jar ../jars/tejas.jar ../src/simulator/config/config.xml  /home/hk/Harveen/Work/DRAMSim/benchmarks/outputs/kips/tejas_dram/"$bench"_"$rank"R_"$bank"B_"$rowbuff".output /home/hk/Harveen/Work/DRAMSim/benchmarks/cpu2006/"$bench"_50M/"$bench_name"
+
+#calculate average
+
+#awk '{sum += ($2 - $1) ;n++} END {print sum/n,n}' /mnt/srishtistr0/home/harveen/benchmarks/timing/"$bench"_"$rank"R_"$bank"B_"$rowbuff".timing
+
+#average_time=`awk '{sum += ($2 - $1) ;n++} END {print sum/n}' /mnt/srishtistr0/home/harveen/benchmarks/timing/"$bench"_"$rank"R_"$bank"B_"$rowbuff".timing`
+
+#echo "Average is $average_time"
+#rounded=`printf '%.*f' 0 $average_time`
+#echo "Rounded to $rounded"
+#latency=`expr $rounded + 20`;
+
+#sed -i "s/<MainMemoryLatency>[0-9]*<\/MainMemoryLatency>/<MainMemoryLatency>"$latency"<\/MainMemoryLatency>/g" ~/Harveen/Work/DRAMSim/repo/Tejas-Simulator/Tejas/../src/simulator/config/config.xml
+
+#cd /mnt/srishtistr0/home/harveen/repo/Tejas-Simulator/Tejas
+
+echo "Running Tejas Sim"
+
+java -jar /home/hk/Harveen/Work/DRAMSim/repo/Tejas-Simulator/Tejas/jars/tejas.jar /home/hk/Harveen/Work/DRAMSim/repo/Tejas-Simulator/Tejas/src/simulator/config/config.xml /home/hk/Harveen/Work/DRAMSim/benchmarks/outputs/kips/tejas_sim/"$bench"_"$rank"R_"$bank"B_"$rowbuff".output /home/hk/Harveen/Work/DRAMSim/benchmarks/cpu2006/"$bench"_50M/"$bench_name"
+
