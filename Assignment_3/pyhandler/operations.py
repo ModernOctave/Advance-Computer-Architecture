@@ -1,22 +1,23 @@
 import os
 import shutil
+from main import index
 
 
 def resetCustomConfig():
-    # See if config_custom.xml exists
-    if not os.path.isfile("config_custom.xml"):
-        print("[INFO]: config_custom.xml not found, creating...")
-    shutil.copyfile("config_base.xml", "config_custom.xml")
-    print("[INFO]: config_custom.xml restored to default")
+    # See if config_custom.{index}.xml exists
+    if not os.path.isfile(f"config_custom.{index}.xml"):
+        print(f"[INFO]: config_custom.{index}.xml not found, creating...")
+    shutil.copyfile("config_base.xml", f"config_custom.{index}.xml")
+    print(f"[INFO]: config_custom.{index}.xml restored to default")
 
 def getIPC():
     # Get IPC
-    with open("run.stat", "r") as f:
+    with open(f"run.{index}.stat", "r") as f:
         return f.readlines()[28].split()[2]
 
 def runTejas(benchmark):
     # Remove old stat file
-    if os.path.isfile("run.stat"):
-        os.remove("run.stat")
+    if os.path.isfile(f"run.{index}.stat"):
+        os.remove(f"run.{index}.stat")
     # Run Tejas
-    os.system(f"java -jar tejas/jars/tejas.jar config_custom.xml run.stat traces/{benchmark}")
+    os.system(f"java -jar tejas/jars/tejas.jar config_custom.{index}.xml run.{index}.stat traces/{benchmark}")

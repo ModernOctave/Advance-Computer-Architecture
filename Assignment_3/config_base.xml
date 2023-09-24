@@ -78,7 +78,7 @@
 				<BHRsize>16</BHRsize>
 				<BranchMispredPenalty>17</BranchMispredPenalty>
 				<SaturatingBits>2</SaturatingBits>
-				<TAGESCLLibDirectory>/home/omp/Documents/B_Tech/Semester_7/ACA/Assignments/Assignment_3/tejas/src/simulator/pipeline/branchpredictor/TAGESCL</TAGESCLLibDirectory>
+				<TAGESCLLibDirectory>/home/om/Documents/Advance-Computer-Architecture/Assignment_3/tejas/src/simulator/pipeline/branchpredictor/TAGESCL</TAGESCLLibDirectory>
 				<LeakageEnergy>0.0178</LeakageEnergy>
 				<DynamicEnergy>0.0962</DynamicEnergy>
 			</BranchPredictor>
@@ -472,7 +472,7 @@
 		<Interconnect>NOC</Interconnect>
 		
 		<NOC>
-			<NocConfigFile>/home/omp/Documents/B_Tech/Semester_7/ACA/Assignments/Assignment_3/NocConfig.txt</NocConfigFile>
+			<NocConfigFile>/home/om/Documents/Advance-Computer-Architecture/Assignment_3/NocConfig.txt</NocConfigFile>
 			<NocSelScheme>STATIC</NocSelScheme>
 			<NocNumberOfBuffers>4</NocNumberOfBuffers>
 			<NocPortType>FCFS</NocPortType>

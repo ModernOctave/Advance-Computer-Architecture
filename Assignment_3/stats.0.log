@@ -1,0 +1,45 @@
+
+------------------------
+
+Saturating Bits Experiment
+
+Running gcc
+Bits	Bimodal	TAGE-SC-L	PerfectPredictor	
+1	
+------------------------
+
+Saturating Bits Experiment
+
+Running gcc
+Bits	Bimodal	TAGE-SC-L	PerfectPredictor	
+1	1.3619	1.7945	2.2822	
+2	1.4649	1.7945	2.2822	
+3	1.4604	1.7945	2.2822	
+4	1.4127	1.7945	2.2822	
+Running lbm
+Bits	Bimodal	TAGE-SC-L	PerfectPredictor	
+1	2.1908	2.1879	2.1956	
+2	2.1941	2.1605	2.1956	
+3	2.1812	2.1879	2.1956	
+4	2.1871	2.1879	2.1956	
+Running mcf
+Bits	Bimodal	TAGE-SC-L	PerfectPredictor	
+1	1.3650	1.7493	2.7062	
+2	1.4390	1.7508	2.7062	
+3	1.4528	1.7493	2.7062	
+4	1.4325	1.7493	2.7062	
+Running namd
+Bits	Bimodal	TAGE-SC-L	PerfectPredictor	
+1	4.3774	4.4427	4.5462	
+2	4.3918	4.4427	4.5462	
+3	4.4286	4.4427	4.5462	
+4	4.4290	4.4427	4.5462	
+Running xalancbmk
+Bits	Bimodal	TAGE-SC-L	PerfectPredictor	
+1	0.4136	0.4390	0.4425	
+2	0.4298	0.4390	0.4425	
+3	0.4298	0.4390	0.4425	
+4	0.4296	0.4390	0.4425	
+
+------------------------
+
