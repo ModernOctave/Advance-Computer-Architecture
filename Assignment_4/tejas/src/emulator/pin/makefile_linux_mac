@@ -1,0 +1,82 @@
+PIN_KIT ?=/mnt/remote_scratch/softwares/pin-97554/
+CXX=$(shell make PIN_ROOT=$(PIN_KIT) VAR=CXX -f pin_makefile print_var)
+LINKER=$(shell make PIN_ROOT=$(PIN_KIT) VAR=LINKER -f pin_makefile print_var)
+TOOL_CXXFLAGS=$(shell make PIN_ROOT=$(PIN_KIT) VAR=TOOL_CXXFLAGS -f pin_makefile print_var)
+TOOL_LDFLAGS=$(shell make PIN_ROOT=$(PIN_KIT) VAR=TOOL_LDFLAGS -f pin_makefile print_var)
+TOOL_LPATHS=$(shell make PIN_ROOT=$(PIN_KIT) VAR=TOOL_LPATHS -f pin_makefile print_var)
+TOOL_LIBS=$(shell make PIN_ROOT=$(PIN_KIT) VAR=TOOL_LIBS -f pin_makefile print_var)
+APP_CXXFLAGS=$(shell make PIN_ROOT=$(PIN_KIT) VAR=APP_CXXFLAGS -f pin_makefile print_var)
+APP_LDFLAGS=$(shell make PIN_ROOT=$(PIN_KIT) VAR=APP_LDFLAGS -f pin_makefile print_var)
+APP_LPATHS=$(shell make PIN_ROOT=$(PIN_KIT) VAR=APP_LPATHS -f pin_makefile print_var)
+APP_LIBS=$(shell make PIN_ROOT=$(PIN_KIT) VAR=APP_LIBS -f pin_makefile print_var)
+
+TOPDIR = $(shell pwd)/../../simulator/
+COMMDIR = $(TOPDIR)emulatorinterface/communication
+COMM_INCLUDE = -I$(COMMDIR) -I$(COMMDIR)/shm -I$(COMMDIR)/filePacket
+TOPBINDIR = $(shell pwd)/../../../bin/
+JNIBINDIR=obj-comm
+BINDIR=obj-pin
+
+dummy=$(shell mkdir $(JNIBINDIR))
+dummy=$(shell mkdir $(BINDIR))
+
+LIB_EXTENSION=
+OBJ_EXTENSION=
+FLAGS_FOR_ZLIB=
+POSITION_INDEPENDENCE=
+ifeq ($(OS),Windows_NT)
+	LIB_EXTENSION=dll
+	OBJ_EXTENSION=obj
+	FLAGS_FOR_ZLIB=
+	POSITION_INDEPENDENCE=
+else
+	LIB_EXTENSION=so
+	OBJ_EXTENSION=o
+	FLAGS_FOR_ZLIB=
+	POSITION_INDEPENDENCE=-fPIC
+endif
+
+JNICOMMAND=
+ifeq ($(OS),Windows_NT)
+	JNICOMMAND=cl.exe /O2 $(JNINCLUDE) -LD $(COMMDIR)/shm/JNIShm.c -Fe$(JNIBINDIR)/libshmlib.$(LIB_EXTENSION)
+else
+	JNICOMMAND=$(CC) -I$(JNIBINDIR) $(JNILinkingFlags) $(COMMDIR)/shm/JNIShm.c $(JNINCLUDE) -o $(JNIBINDIR)/libshmlib.$(LIB_EXTENSION)
+endif
+
+all: $(BINDIR)/causalityTool.$(LIB_EXTENSION)  $(JNIBINDIR)/libshmlib.$(LIB_EXTENSION)
+
+$(BINDIR)/causalityTool.$(LIB_EXTENSION): $(BINDIR)/causalityTool.$(OBJ_EXTENSION) $(BINDIR)/shmem.$(OBJ_EXTENSION)
+	$(LINKER) $(TOOL_LDFLAGS) -o $(BINDIR)/causalityTool.$(LIB_EXTENSION) $(BINDIR)/causalityTool.$(OBJ_EXTENSION) $(BINDIR)/shmem.$(OBJ_EXTENSION) $(FLAGS_FOR_ZLIB) $(TOOL_LPATHS) $(TOOL_LIBS)
+
+$(BINDIR)/causalityTool.$(OBJ_EXTENSION): causalityTool.cpp $(COMMDIR)/IPCBase.h $(COMMDIR)/shm/shmem.h  $(COMMDIR)/filePacket/filePacket.h $(COMMDIR)/shm/shmem.cc
+	$(CXX) $(TOOL_CXXFLAGS) $(COMM_INCLUDE) -c causalityTool.cpp ../../simulator/emulatorinterface/communication/shm/shmem.cc
+	mkdir $(JNIBINDIR)
+	mkdir $(BINDIR)
+	mv causalityTool.$(OBJ_EXTENSION) $(BINDIR)/causalityTool.$(OBJ_EXTENSION)
+	mv shmem.$(OBJ_EXTENSION) $(BINDIR)/shmem.$(OBJ_EXTENSION)
+
+$(BINDIR)/shmem.$(OBJ_EXTENSION): $(COMMDIR)/IPCBase.h $(COMMDIR)/shm/shmem.h  $(COMMDIR)/shm/shmem.cc
+	$(CXX) $(POSITION_INDEPENDENCE) $(APP_CXXFLAGS) -c ../../simulator/emulatorinterface/communication/shm/shmem.cc -o $(BINDIR)/shmem.$(OBJ_EXTENSION)
+
+
+################################ JNI stuff comes here ############################################
+JNIPACKAGE = ../../simulator/emulatorinterface/communication/shm/SharedMem.java #use this for java-11
+JNINCLUDE =-I/usr/lib/jvm/java-11-openjdk-amd64/include/linux -I/usr/lib/jvm/java-11-openjdk-amd64/include #use this for java-11
+JNILinkingFlags = -shared -Wall $(POSITION_INDEPENDENCE)
+JAVAH = javac #use this for java-11
+JAVAHCOMMAND = $(JAVAH) -classpath $(TOPBINDIR) -h $(JNIBINDIR) $(JNIPACKAGE); mv $(JNIBINDIR)/emulatorinterface_communication_shm_SharedMem.h $(JNIBINDIR)/SharedMem.h
+ifeq ($(shell java -version 2>&1|grep 1.8.0 >/dev/null; printf $$?),0)
+	JNIPACKAGE = emulatorinterface.communication.shm.SharedMem #use this for java-8
+	JNINCLUDE =-I/usr/lib/jvm/java-8-openjdk-amd64/include/linux -I/usr/lib/jvm/java-8-openjdk-amd64/include #use this for java-8
+	JAVAH = javah -jni #use this for java-8
+	JAVAHCOMMAND = $(JAVAH) -classpath $(TOPBINDIR) -o $(JNIBINDIR)/SharedMem.h $(JNIPACKAGE) #use this for java-8	
+endif
+
+$(JNIBINDIR)/libshmlib.$(LIB_EXTENSION): $(JNIBINDIR)/SharedMem.h $(COMMDIR)/shm/JNIShm.c $(COMMDIR)/common.h
+	$(shell $(JNICOMMAND))
+
+$(JNIBINDIR)/SharedMem.h: $(TOPBINDIR)/emulatorinterface/communication/shm/SharedMem.class
+	$(JAVAHCOMMAND)
+
+clean:
+	rm -rf $(BINDIR) $(JNIBINDIR)

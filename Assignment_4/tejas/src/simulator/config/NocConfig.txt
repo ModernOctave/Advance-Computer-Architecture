@@ -1,0 +1,11 @@
+10 10
+M	-	D1	-	-	-	-	-	-	-  
+C	L2	C	L2	C	L2	C	L2	-	-
+L2	C	L2	C	L2	C	L2	C	-	-
+C	L2	C	L2	C	L2	C	L2	-	-
+L2	C	L2	C	L2	C	L2	C	-	-
+C	L2	C	L2	C	L2	C	L2	-	-
+L2	C	L2	C	L2	C	L2	C	-	-
+C	L2	C	L2	C	L2	C	L2	-	-
+L2	C	L2	C	L2	C	L2	C	-	-
+-	-	-	-	-	-	-	-	-	-

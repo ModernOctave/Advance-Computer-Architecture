@@ -1,0 +1,12 @@
+**/bin
+**/obj-pin
+**/obj-comm
+**/.classpath
+**/.cproject
+**/.project
+**/.settings
+**/hs_err*
+**/*.swp
+**/*.swo
+**/*.swn
+**/*.trc
